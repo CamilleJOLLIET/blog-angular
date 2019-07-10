@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PostlistComponent } from './postlist/postlist.component';
@@ -14,13 +14,18 @@ import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { PostService } from './services/post.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { UserService } from './services/user.service';
 import { NewPostComponent } from './new-post/new-post.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const appRoutes: Routes = [
   { path: 'posts', canActivate: [AuthGuard], component: PostViewComponent },
   { path: 'posts/:id', canActivate: [AuthGuard], component: SinglePostComponent },
   { path: 'new', canActivate: [AuthGuard], component: NewPostComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'users', component: UserListComponent },
+  { path: 'new-user', component: NewUserComponent },
   { path: '', component: PostViewComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
@@ -35,17 +40,21 @@ const appRoutes: Routes = [
     PostViewComponent,
     SinglePostComponent,
     FourOhFourComponent,
-    NewPostComponent
+    NewPostComponent,
+    UserListComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     PostService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
