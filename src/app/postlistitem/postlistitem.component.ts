@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-postlistitem',
@@ -10,19 +11,23 @@ export class PostlistitemComponent implements OnInit {
   @Input() postTitle: string;
   @Input() postContent: string;
   @Input() postLoveIts: number;
+  @Input() postHateIts: number;
   @Input() postCreatedAt: Date;
+  @Input() index: number;
+  @Input() id: number;
 
-  constructor() {
+  constructor(private postService: PostService) {
   }
 
   ngOnInit() {
+
   }
 
   handleLoveClick() {
-    this.postLoveIts++;
+    this.postService.loveClick(this.index);
   }
 
   handleHateClick() {
-    this.postLoveIts--;
+    this.postService.hateClick(this.index);
   }
 }

@@ -1,12 +1,14 @@
 <li [ngClass]="{'list-group-item': true,
-                'list-group-item-success': postLoveIts > 0,
-                'list-group-item-danger': postLoveIts < 0}">
+                'list-group-item-success': postLoveIts > postHateIts,
+                'list-group-item-danger': postLoveIts < postHateIts}">
     <h3>{{ postTitle }}</h3>
+    <a [routerLink]="[id]">Détails</a>
     <p>{{ postContent }}</p>
     <p>{{ postCreatedAt | date:'short'}}</p>
     <button class="btn btn-success"
             (click)="handleLoveClick()">Love it !</button>
     <button class="btn btn-danger"
             (click)="handleHateClick()">Don't love it !</button>
-    <p>{{ postLoveIts }} peoples like it</p>
+    <p>{{ postLoveIts }} peoples love it</p>
+    <p>{{ postHateIts }} peoples hate it</p>
 </li>

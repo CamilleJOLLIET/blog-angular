@@ -1,5 +1,12 @@
-<app-postlistitem *ngFor="let post of posts"
+<app-postlistitem *ngFor="let post of posts; let i = index"
                   [postTitle]="post.title"
                   [postContent]="post.content"
                   [postLoveIts]="post.loveIts"
-                  [postCreatedAt]="getCreationDate()"></app-postlistitem>
+                  [postHateIts]="post.hateIts"
+                  [postCreatedAt]="getCreationDate()"
+                  [index]="i"
+                  [id]="post.id"></app-postlistitem>
+<button class="btn btn-success"
+        (click)="handleLoveAllClick()">Love all</button>
+<button class="btn btn-danger"
+        (click)="handleHateAllClick()">Hate all</button>
